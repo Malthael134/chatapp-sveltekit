@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  svelte:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app/src:/app/src:ro
+      - ./app/env:/app/env:ro
+      - ./app/static:/app/static:ro
+      - ./app/svelte.config.js:/app/svelte.config.js:ro

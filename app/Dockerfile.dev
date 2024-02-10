@@ -1,0 +1,19 @@
+FROM node:21
+WORKDIR /app
+
+# Install pnpm
+RUN npm i -g pnpm
+
+# Dependencies
+COPY package*.json .
+RUN pnpm i
+
+# Environment variables
+COPY ./env ./env
+COPY . .
+
+# Source code
+COPY ./src ./src
+
+# Run
+CMD [ "pnpm", "run", "dev:docker" ]
