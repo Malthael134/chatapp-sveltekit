@@ -1,3 +1,3 @@
 # Chatapp-SvelteKit
 
-Stateless chatapp fully written in SvelteKit
+Chatapp written in SvelteKit and Go.
