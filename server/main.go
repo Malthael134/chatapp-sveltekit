@@ -1,7 +1,7 @@
 package main
 
-import "github.com/malthael134/chatapp-sveltekit/server/api"
+import api "github.com/malthael134/chatapp-sveltekit/server/routes"
 
 func main() {
-	api.Run()
+	api.Run(":3000")
 }

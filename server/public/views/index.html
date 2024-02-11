@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.10/dist/htmx.min.js"></script>
+    <title>WebSocket Client</title>
+    <script>
+        let wssUrl = 'localhost:8080';
+
+        let logs = [];
+
+        let logsDiv = document.getElementById('logs');
+        let connected = false;
+
+        let ws;
+
+        function connect() {
+            if (connected) {
+                console.log('Already connected');
+                return;
+            }
+
+            ws = new WebSocket(`ws://${wssUrl}`);
+
+            ws.addEventListener('open', (event) => {
+                console.log('Connected to server');
+                console.log(event);
+                connected = true;
+            });
+
+            ws.addEventListener('message', (event) => {
+                console.log('Message from server', event.data);
+                logs.push(event.data);
+                logsDiv.innerHTML = logs.join('<br>');
+            });
+
+            ws.addEventListener('close', (event) => {
+                console.log('Connection closed', event);
+                connected = false;
+            });
+
+        }
+
+        function disconnect() {
+            if (!connected) {
+                console.log('Not connected');
+                return;
+            }
+
+            ws.close();
+        }
+
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="connect()">Connect</button>
+    <button type="button" onclick="disconnect()">Disconnect</button>
+    <div id="logs"></div>
+</body>
+
+</html>

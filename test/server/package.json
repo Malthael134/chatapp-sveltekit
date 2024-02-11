@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot run ./src/index.ts",
+    "start": "bun run ./src/index.ts",
+    "build": "bun build src/index.ts --outdir build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}
